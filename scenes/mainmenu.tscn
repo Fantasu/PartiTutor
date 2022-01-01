@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/mainmenu.gd" type="Script" id=2]
+[ext_resource path="res://images/notes.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=3]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 2
+emission_box_extents = Vector3( 150, 0, 0 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 0.0
+gravity = Vector3( 0, -1, 0 )
+initial_velocity = 85.0
+initial_velocity_random = 0.26
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 12.99
+linear_accel_random = 0.36
+color = Color( 1, 1, 1, 0.313726 )
+anim_offset = 0.75
+anim_offset_random = 1.0
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+start_button = NodePath("MarginContainer/CenterContainer/VBoxContainer2/VBoxContainer/Start")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = -10
+custom_constants/margin_top = -10
+custom_constants/margin_left = -10
+custom_constants/margin_bottom = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 351.0
+margin_bottom = 200.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+margin_left = 68.0
+margin_top = 41.0
+margin_right = 292.0
+margin_bottom = 169.0
+custom_constants/separation = 45
+
+[node name="Title" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer2"]
+margin_right = 224.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Let's Learn 
+Musical Notes!"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer2"]
+margin_top = 80.0
+margin_right = 224.0
+margin_bottom = 128.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_left = 132.0
+margin_right = 224.0
+margin_bottom = 22.0
+size_flags_horizontal = 12
+size_flags_vertical = 12
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0.470588, 0.576471, 0.854902, 1 )
+text = "Start"
+flat = true
+align = 2
+
+[node name="Quit" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_left = 148.0
+margin_top = 26.0
+margin_right = 224.0
+margin_bottom = 48.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0.470588, 0.576471, 0.854902, 1 )
+text = "Quit"
+flat = true
+align = 2
+
+[node name="NoteParticle" type="Particles2D" parent="."]
+material = SubResource( 3 )
+position = Vector2( 169.434, 226.527 )
+emitting = false
+amount = 22
+lifetime = 4.0
+preprocess = 1.0
+speed_scale = 0.7
+draw_order = 1
+process_material = SubResource( 4 )
+texture = ExtResource( 3 )
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer2/VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer2/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

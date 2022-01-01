@@ -1,0 +1,114 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scripts/notemanager.gd" type="Script" id=1]
+[ext_resource path="res://images/alltiles.png" type="Texture" id=2]
+[ext_resource path="res://scripts/spawnlines.gd" type="Script" id=3]
+[ext_resource path="res://scenes/note.tscn" type="PackedScene" id=4]
+[ext_resource path="res://PressStart2P.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 5 )
+
+[node name="NoteManager" type="Node2D"]
+script = ExtResource( 1 )
+note = ExtResource( 4 )
+
+[node name="Pentagram" type="Node2D" parent="."]
+
+[node name="Lines" type="Sprite" parent="Pentagram"]
+position = Vector2( 221.619, -0.242296 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 46, 487, 25 )
+
+[node name="SolClave" type="Sprite" parent="Pentagram"]
+position = Vector2( 0.374577, 3.8147e-06 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 5, 0, 22, 43 )
+
+[node name="SpawnLines" type="Node2D" parent="."]
+position = Vector2( 354.308, 0.205403 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaLine" type="Position2D" parent="SpawnLines"]
+position = Vector2( 0, -17.9005 )
+
+[node name="SolSpace" type="Position2D" parent="SpawnLines"]
+position = Vector2( 16.8368, -15.7562 )
+
+[node name="FaLine" type="Position2D" parent="SpawnLines"]
+position = Vector2( 0, -12.4729 )
+
+[node name="MiSpace" type="Position2D" parent="SpawnLines"]
+position = Vector2( 16.8368, -9.57059 )
+
+[node name="ReLine" type="Position2D" parent="SpawnLines"]
+position = Vector2( 0, -6.40006 )
+
+[node name="DoSpace" type="Position2D" parent="SpawnLines"]
+position = Vector2( 16.8368, -3.35954 )
+
+[node name="SiLine" type="Position2D" parent="SpawnLines"]
+position = Vector2( 0, -0.546404 )
+
+[node name="LaSpace" type="Position2D" parent="SpawnLines"]
+position = Vector2( 16.8368, 2.57876 )
+
+[node name="SolLine" type="Position2D" parent="SpawnLines"]
+position = Vector2( 0, 5.7717 )
+
+[node name="FaSpace" type="Position2D" parent="SpawnLines"]
+position = Vector2( 16.8368, 8.68556 )
+
+[node name="MiLine" type="Position2D" parent="SpawnLines"]
+position = Vector2( 0, 11.5104 )
+
+[node name="ReSpace" type="Position2D" parent="SpawnLines"]
+position = Vector2( 16.8368, 14.7268 )
+
+[node name="DoLine" type="Position2D" parent="SpawnLines"]
+position = Vector2( 0, 17.1601 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="ModeOptions" type="ItemList" parent="."]
+margin_left = 287.079
+margin_top = -148.192
+margin_right = 344.079
+margin_bottom = -112.192
+custom_styles/cursor = SubResource( 4 )
+custom_styles/selected_focus = SubResource( 3 )
+custom_styles/bg_focus = SubResource( 5 )
+custom_styles/cursor_unfocused = SubResource( 6 )
+custom_styles/selected = SubResource( 7 )
+custom_styles/bg = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/guide_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_selected = Color( 0.470588, 0.576471, 0.854902, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+items = [ "Lines", null, false, "Spaces", null, false, "Both", null, false ]
+auto_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_spawntimer_timeout"]
+[connection signal="item_selected" from="ModeOptions" to="." method="_on_option_selected"]
